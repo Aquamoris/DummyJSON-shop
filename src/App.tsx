@@ -1,10 +1,9 @@
-import Products from "./components/Products.jsx";
+import ProductsContainer from "./components/products/ProductsContainer.tsx";
 
 function App() {
-
   return (
     <>
-      <Products />
+      <ProductsContainer />
     </>
   )
 }
