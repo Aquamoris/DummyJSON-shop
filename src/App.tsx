@@ -1,9 +1,16 @@
-import ProductsContainer from "./components/products/ProductsContainer.tsx";
+import ProductsContainer from "./components/ProductsList/ProductsContainer.tsx";
+import Navbar from "./components/Navbar/Navbar.tsx";
+import {Route, Routes} from "react-router-dom";
+import Product from "./components/SingleProduct/Product.tsx";
 
 function App() {
   return (
     <>
-      <ProductsContainer />
+        <Navbar />
+        <Routes>
+            <Route path='/' element={<ProductsContainer />} />
+            <Route path='/products/:id' element={<Product />} />
+        </Routes>
     </>
   )
 }

@@ -1,0 +1,14 @@
+.productItem {
+  border: thin solid black;
+  position: relative;
+  .productImage {
+    max-height: 250px;
+    overflow: hidden!important;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
