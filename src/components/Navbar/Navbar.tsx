@@ -6,6 +6,7 @@ const Navbar:React.FC = () => {
     return (
         <nav className={style.nav}>
             <Link to='/'>Main</Link>
+            <Link to='/login'>Sing in</Link>
         </nav>
     );
 };
