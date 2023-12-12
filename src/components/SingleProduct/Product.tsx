@@ -1,21 +1,19 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
 import {useFetchCurrentProductQuery} from "../../services/ProductsService.ts";
+import {calculateOldPrice} from "../../utils/functions/calculateDiscount.ts";
 
 const Product:React.FC = () => {
     const {id} = useParams();
     const {data: product, error, isLoading} = useFetchCurrentProductQuery(id ? id : '');
 
     if (isLoading) return <h3>Loading</h3>
-    if (error) return <h3>Error</h3>
+    if (error) return <h3>Product not found :(</h3>
 
     let oldPrice = null;
 
-    if (product?.price && product?.discountPercentage) {
-        const newPrice = +product.price;
-        const discount = 100 - (+product.discountPercentage);
-
-        oldPrice = Math.floor(newPrice * 100 / discount);
+    if (product?.price && product?.discountPercentage && product?.discountPercentage > 0) {
+        oldPrice = calculateOldPrice(product.price, product.discountPercentage);
     }
 
     return (
@@ -29,14 +27,19 @@ const Product:React.FC = () => {
             <div>{product?.category}</div>
             <div>{product?.rating}</div>
             <div>
-                <span><del>{oldPrice}</del> </span>
-                <span>{product?.price} </span>
-                <span>{product?.discountPercentage}%</span>
+                {
+                    oldPrice ? <div>
+                                    <span><del>{oldPrice}</del> </span>
+                                    <span>{product?.price} </span>
+                                    <span>{product?.discountPercentage}%</span>
+                                </div>
+                              : <span>{product?.price} </span>
+                }
             </div>
             <div>
                 {
-                    product?.images.map(i => (
-                        <img src={i} alt=""/>
+                    product?.images.map((i, index) => (
+                        <img key={index} src={i} alt=""/>
                     ))
                 }
             </div>

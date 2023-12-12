@@ -2,6 +2,9 @@
   border: thin solid black;
   position: relative;
   .productImage {
+    display: flex;
+    align-items: center;
+    min-height: 200px;
     max-height: 250px;
     overflow: hidden!important;
   }

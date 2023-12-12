@@ -23,10 +23,9 @@ const ProductsCard:React.FC<Props> = ({
                     <span>{title}</span>
                     <span>{brand}</span>
                 </div>
-                <div>
-                    <span>{price}</span>
-                    <span>{rating}</span>
-                </div>
+                    <div>{price} $</div>
+                    <div>{rating}</div>
+                <button>Add to Bag</button>
         </Link>
     );
 };
